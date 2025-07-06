@@ -12,7 +12,7 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top"
 export default function Home() {
   return (
     <CustomCursor>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
         <Header />
         <main>
           <HeroSection />
