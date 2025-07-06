@@ -6,6 +6,7 @@ import { Calendar, MapPin, Building, Award } from "lucide-react"
 import { experience, stats } from "@/constants"
 import { useFadeInAnimation, useStaggerAnimation } from "@/hooks/use-animation"
 import { ExperienceSectionProps } from "@/types"
+import Image from 'next/image'
 
 export function ExperienceSection({ className }: ExperienceSectionProps) {
   const [animatedStats, setAnimatedStats] = useState(stats.map(() => 0))
@@ -129,16 +130,12 @@ export function ExperienceSection({ className }: ExperienceSectionProps) {
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg overflow-hidden border border-border bg-background flex items-center justify-center">
                           {exp.logo ? (
-                            <img
+                            <Image
                               src={exp.logo}
-                              alt={`${exp.company} logo`}
-                              className="w-full h-full object-contain p-1"
-                              onError={(e) => {
-                                // Fallback to building icon if image fails to load
-                                const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
-                                target.nextElementSibling?.classList.remove('hidden');
-                              }}
+                              alt={exp.company}
+                              width={40}
+                              height={40}
+                              className="object-contain w-10 h-10 rounded-lg shadow-md bg-white dark:bg-zinc-900"
                             />
                           ) : null}
                           <Building className="w-6 h-6 text-muted-foreground hidden" />

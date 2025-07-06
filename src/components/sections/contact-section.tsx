@@ -66,7 +66,7 @@ export function ContactSection({ className }: ContactSectionProps) {
         // Handle API validation errors
         if (result.errors && Array.isArray(result.errors)) {
           const fieldErrors: Record<string, string> = {}
-          result.errors.forEach((error: any) => {
+          result.errors.forEach((error: { path?: string[]; message: string }) => {
             if (error.path && error.path[0]) {
               const fieldName = error.path[0] as string
               fieldErrors[fieldName] = error.message
@@ -152,7 +152,7 @@ export function ContactSection({ className }: ContactSectionProps) {
               Get In <span className="bg-gradient-to-r from-electric-blue to-neon-accent bg-clip-text text-transparent">Touch</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Ready to start a project or just want to chat? I'd love to hear from you!
+              Ready to start a project or just want to chat? I&apos;d love to hear from you!
             </p>
           </motion.div>
 
@@ -171,7 +171,7 @@ export function ContactSection({ className }: ContactSectionProps) {
                   Send a Message
                 </h3>
                 <p className="text-muted-foreground text-sm lg:text-base">
-                  Fill out the form below and I'll get back to you as soon as possible.
+                  Fill out the form below and I&apos;ll get back to you as soon as possible.
                 </p>
               </div>
 
@@ -229,7 +229,7 @@ export function ContactSection({ className }: ContactSectionProps) {
                       ? "border-destructive focus:border-destructive"
                       : "border-border focus:border-electric-blue"
                       } bg-background text-foreground placeholder:text-muted-foreground`}
-                    placeholder="What's this about?"
+                    placeholder="What&apos;s this about?"
                   />
                   {errors.subject && (
                     <p className="mt-1 text-sm text-destructive">{errors.subject.message}</p>
@@ -288,7 +288,7 @@ export function ContactSection({ className }: ContactSectionProps) {
                   >
                     <div className="flex items-center justify-center space-x-2">
                       <CheckCircle className="w-5 h-5" />
-                      <span>Message sent successfully! I'll get back to you soon.</span>
+                      <span>Message sent successfully! I&apos;ll get back to you soon.</span>
                     </div>
                   </motion.div>
                 )}
@@ -336,7 +336,7 @@ export function ContactSection({ className }: ContactSectionProps) {
                   Contact Information
                 </h3>
                 <p className="text-muted-foreground mb-2 text-sm lg:text-base">
-                  Feel free to reach out through any of these channels. I'm always open to discussing new opportunities and collaborations.
+                  Feel free to reach out through any of these channels. I&apos;m always open to discussing new opportunities and collaborations.
                 </p>
               </div>
 
@@ -403,12 +403,12 @@ export function ContactSection({ className }: ContactSectionProps) {
                 className="bg-card border border-border rounded-xl p-4 lg:p-6"
               >
                 <h4 className="text-lg font-semibold text-foreground mb-2 lg:mb-3">
-                  Let's Work Together
+                  Let&apos;s Work Together
                 </h4>
                 <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
-                  I'm always interested in new opportunities and exciting projects.
+                  I&apos;m always interested in new opportunities and exciting projects.
                   Whether you have a specific project in mind or just want to explore possibilities,
-                  I'd love to hear from you and discuss how we can bring your ideas to life.
+                  I&apos;d love to hear from you and discuss how we can bring your ideas to life.
                 </p>
               </motion.div>
             </motion.div>

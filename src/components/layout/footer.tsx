@@ -1,9 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, Heart, ArrowUp, MapPin, Phone, ExternalLink, Sparkles } from "lucide-react"
+import { Github, Linkedin, Mail, Heart, ArrowUp, MapPin, Phone, Sparkles, Twitter } from "lucide-react"
 import { siteConfig, navigation, socialLinks } from "@/constants"
-import { cn } from "@/lib/utils"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -18,6 +17,8 @@ export function Footer() {
         return <Github className="w-5 h-5" />
       case "linkedin":
         return <Linkedin className="w-5 h-5" />
+      case "twitter":
+        return <Twitter className="w-5 h-5" />
       default:
         return <Mail className="w-5 h-5" />
     }
@@ -29,17 +30,12 @@ export function Footer() {
         return "hover:bg-gray-800 hover:text-white"
       case "linkedin":
         return "hover:bg-blue-600 hover:text-white"
+      case "twitter":
+        return "hover:bg-blue-400 hover:text-white"
       default:
         return "hover:bg-electric-blue hover:text-white"
     }
   }
-
-  const quickLinks = [
-    { name: "Resume", href: "/resume.pdf", icon: ExternalLink },
-    { name: "Blog", href: "https://blog.ankitvars.dev", icon: ExternalLink },
-    { name: "Services", href: "#services", icon: Sparkles },
-    { name: "Testimonials", href: "#testimonials", icon: Sparkles },
-  ]
 
   return (
     <footer className="relative bg-card border-t border-border overflow-hidden">

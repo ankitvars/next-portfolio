@@ -20,8 +20,8 @@ export function useScrollAnimation(threshold = 0.1) {
   return { ref, controls, inView }
 }
 
-export function useStaggerAnimation(
-  items: any[],
+export function useStaggerAnimation<T>(
+  items: T[],
   staggerDelay = 0.1,
   threshold = 0.1
 ) {

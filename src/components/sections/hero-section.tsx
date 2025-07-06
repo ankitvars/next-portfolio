@@ -6,6 +6,7 @@ import { ChevronDown, Download, Mail, Github, Linkedin } from "lucide-react"
 import { personalInfo, socialLinks } from "@/constants"
 import { useFadeInAnimation, useSlideInAnimation } from "@/hooks/use-animation"
 import { HeroSectionProps } from "@/types"
+import Image from 'next/image'
 
 export function HeroSection({ className }: HeroSectionProps) {
   const [text, setText] = useState("")
@@ -143,11 +144,13 @@ export function HeroSection({ className }: HeroSectionProps) {
                   ease: "easeInOut",
                 }}
               >
-                <img
+                <Image
                   src="/profile.jpg"
                   alt="Ankit Varshney profile photo"
-                  className="w-full h-full object-cover rounded-full border-4 border-background"
-                  draggable="false"
+                  width={160}
+                  height={160}
+                  className="rounded-full border-4 border-electric-blue shadow-xl mx-auto mb-4"
+                  priority
                 />
               </motion.div>
             </div>

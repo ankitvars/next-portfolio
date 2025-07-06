@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Code, Database, Server, Zap, TrendingUp, Target } from "lucide-react"
+import Image from "next/image"
 import { skills } from "@/constants"
 import { useFadeInAnimation, useStaggerAnimation } from "@/hooks/use-animation"
-import { SkillsSectionProps, Skill } from "@/types"
+import { SkillsSectionProps } from "@/types"
 
 export function SkillsSection({ className }: SkillsSectionProps) {
   const [activeCategory, setActiveCategory] = useState<"frontend" | "backend" | "devops">("frontend")
@@ -13,10 +14,7 @@ export function SkillsSection({ className }: SkillsSectionProps) {
   const [hasAnimated, setHasAnimated] = useState(false)
 
   const { ref: fadeRef, fadeInVariants } = useFadeInAnimation(0.3)
-  const { ref: staggerRef, containerVariants, itemVariants } = useStaggerAnimation(
-    skills[activeCategory],
-    0.1
-  )
+  const { ref: staggerRef, containerVariants, itemVariants } = useStaggerAnimation(skills[activeCategory])
 
   const categories = [
     { key: "frontend", label: "Frontend", icon: Code, color: "from-electric-blue to-blue-500" },
@@ -24,61 +22,59 @@ export function SkillsSection({ className }: SkillsSectionProps) {
     { key: "devops", label: "DevOps", icon: Database, color: "from-neon-orange to-orange-500" },
   ]
 
-  // Animate progress bars when section comes into view
-  useEffect(() => {
-    if (hasAnimated) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHasAnimated(true);
-            animateProgressBars();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    const skillsElement = document.querySelector('#skills');
-    if (skillsElement) {
-      observer.observe(skillsElement);
-    }
-
-    return () => {
-      if (skillsElement) observer.unobserve(skillsElement);
-      observer.disconnect();
-    };
-  }, [hasAnimated]);
-
-  const animateProgressBars = () => {
-    const currentSkills = skills[activeCategory];
+  const animateProgressBars = useCallback(() => {
+    const currentSkills = skills[activeCategory]
     currentSkills.forEach((skill) => {
-      const duration = 1500; // 1.5 seconds
-      const steps = 60;
-      const increment = skill.level / steps;
-      let currentValue = 0;
+      const duration = 1500 // 1.5 seconds
+      const steps = 60
+      const increment = skill.level / steps
+      let currentValue = 0
 
       const timer = setInterval(() => {
-        currentValue += increment;
+        currentValue += increment
         if (currentValue >= skill.level) {
-          currentValue = skill.level;
-          clearInterval(timer);
+          currentValue = skill.level
+          clearInterval(timer)
         }
 
         setAnimatedSkills((prev) => ({
           ...prev,
           [skill.name]: Math.floor(currentValue)
-        }));
-      }, duration / steps);
-    });
-  };
+        }))
+      }, duration / steps)
+    })
+  }, [activeCategory])
+
+  // Intersection Observer for animation trigger
+  useEffect(() => {
+    const skillsElement = document.querySelector('#skills')
+    if (!skillsElement) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true)
+            animateProgressBars()
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    observer.observe(skillsElement)
+
+    return () => {
+      if (skillsElement) observer.unobserve(skillsElement)
+      observer.disconnect()
+    }
+  }, [hasAnimated, animateProgressBars])
 
   // Reset animations when category changes
   useEffect(() => {
-    setAnimatedSkills({});
-    setHasAnimated(false);
-  }, [activeCategory]);
+    setAnimatedSkills({})
+    setHasAnimated(false)
+  }, [activeCategory])
 
   const getSkillIcon = (skillName: string) => {
     const colors = [
@@ -98,6 +94,10 @@ export function SkillsSection({ className }: SkillsSectionProps) {
     if (level >= 75) return <TrendingUp className="w-4 h-4 text-blue-500" />
     return <Zap className="w-4 h-4 text-orange-500" />
   }
+
+  useEffect(() => {
+    animateProgressBars()
+  }, [animateProgressBars])
 
   return (
     <section
@@ -141,10 +141,10 @@ export function SkillsSection({ className }: SkillsSectionProps) {
                 return (
                   <motion.button
                     key={category.key}
-                    onClick={() => setActiveCategory(category.key as any)}
+                    onClick={() => setActiveCategory(category.key as "frontend" | "backend" | "devops")}
                     className={`relative flex items-center space-x-2 px-6 py-3 rounded-md font-medium transition-all duration-300 ${isActive
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -229,9 +229,11 @@ export function SkillsSection({ className }: SkillsSectionProps) {
                       }}
                       transition={{ duration: 0.5 }}
                     >
-                      <img
+                      <Image
                         src={`/tech/${skill.icon}.svg`}
                         alt={skill.name + " logo"}
+                        width={32}
+                        height={32}
                         className="w-8 h-8 object-contain"
                         loading="lazy"
                         onError={(e) => {
@@ -326,7 +328,7 @@ export function SkillsSection({ className }: SkillsSectionProps) {
                 Continuous Learning
               </h3>
               <p className="text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
-                Technology evolves rapidly, and I'm committed to staying at the forefront of web development.
+                Technology evolves rapidly, and I&apos;m committed to staying at the forefront of web development.
                 I regularly explore new frameworks, tools, and best practices to ensure I deliver cutting-edge solutions
                 that meet modern standards and user expectations.
               </p>

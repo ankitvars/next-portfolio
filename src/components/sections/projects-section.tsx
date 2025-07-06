@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, Github, Eye, Code, Star, ArrowRight, CheckCircle } from "lucide-react"
+import { ExternalLink, Github, Eye, Code, ArrowRight, CheckCircle } from "lucide-react"
 import useEmblaCarousel from "embla-carousel-react"
 import { projects } from "@/constants"
 import { useFadeInAnimation, useStaggerAnimation } from "@/hooks/use-animation"
 import { ProjectsSectionProps } from "@/types"
+import Image from 'next/image'
 
 export function ProjectsSection({ className }: ProjectsSectionProps) {
   const [selectedProject, setSelectedProject] = useState(0)
@@ -75,8 +76,8 @@ export function ProjectsSection({ className }: ProjectsSectionProps) {
                   key={project.title}
                   onClick={() => setSelectedProject(index)}
                   className={`relative px-6 py-3 rounded-xl font-medium transition-all duration-300 ${selectedProject === index
-                      ? "text-background"
-                      : "text-muted-foreground hover:text-foreground bg-muted"
+                    ? "text-background"
+                    : "text-muted-foreground hover:text-foreground bg-muted"
                     }`}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -146,10 +147,12 @@ export function ProjectsSection({ className }: ProjectsSectionProps) {
                       </AnimatePresence>
 
                       <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-accent/20 rounded-xl border border-border overflow-hidden shadow-lg">
-                        <img
+                        <Image
                           src={project.image}
-                          alt={`${project.title} project screenshot`}
-                          className="w-full h-full object-cover"
+                          alt={project.title}
+                          width={480}
+                          height={320}
+                          className="rounded-xl object-cover w-full h-full"
                           loading="lazy"
                           onLoad={() => handleImageLoad(project.title)}
                           onError={() => handleImageError(project.title)}
@@ -342,7 +345,7 @@ export function ProjectsSection({ className }: ProjectsSectionProps) {
           >
             <div className="embla" ref={emblaRef}>
               <div className="embla__container">
-                {projects.map((project, index) => (
+                {projects.map((project) => (
                   <div key={project.title} className="embla__slide flex-[0_0_100%]">
                     <div className="bg-card border border-border rounded-xl p-6 mx-2">
                       <h3 className="text-xl font-bold text-foreground mb-3">

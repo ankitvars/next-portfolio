@@ -18,7 +18,6 @@ export function AboutSection({ className }: AboutSectionProps) {
   useEffect(() => {
     if (hasAnimated) return;
 
-    let observedNode: Element | null = null;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -31,22 +30,16 @@ export function AboutSection({ className }: AboutSectionProps) {
       { threshold: 0.5 }
     );
 
-    // Use a callback to get the node
-    const refCallback = (node: Element | null) => {
-      if (node) {
-        observedNode = node;
-        observer.observe(node);
-      }
-    };
-    // Attach the callback to the ref
-    // @ts-ignore
-    staggerRef(refCallback);
+    const skillsElement = document.querySelector('#about');
+    if (skillsElement) {
+      observer.observe(skillsElement);
+    }
 
     return () => {
-      if (observedNode) observer.unobserve(observedNode);
+      if (skillsElement) observer.unobserve(skillsElement);
       observer.disconnect();
     };
-  }, [hasAnimated, staggerRef]);
+  }, [hasAnimated]);
 
   const animateCounters = () => {
     stats.forEach((stat, index) => {
@@ -248,7 +241,7 @@ export function AboutSection({ className }: AboutSectionProps) {
                 What Drives Me
               </h3>
               <p className="text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
-                I'm passionate about creating exceptional user experiences and building scalable applications that make a real impact.
+                I&apos;m passionate about creating exceptional user experiences and building scalable applications that make a real impact.
                 My approach combines technical expertise with creative problem-solving, ensuring every project I work on delivers
                 both functionality and elegance.
               </p>
