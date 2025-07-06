@@ -156,6 +156,8 @@ This project includes automated CI/CD pipelines using GitHub Actions:
    - `VERCEL_PROJECT_ID` - Your Vercel project ID
    - `RESEND_API_KEY` - Your Resend API key for contact form
 
+> **Note**: After adding secrets, push any change to trigger the workflow automatically.
+
 #### Workflow Features
 
 - **Automated Testing**: Linting, type checking, and build verification
