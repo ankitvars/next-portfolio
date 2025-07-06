@@ -143,7 +143,33 @@ Customize colors in `src/app/globals.css`:
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### GitHub Actions (Recommended)
+
+This project includes automated CI/CD pipelines using GitHub Actions:
+
+#### Setup GitHub Secrets
+
+1. Go to your GitHub repository → Settings → Secrets and variables → Actions
+2. Add the following secrets:
+   - `VERCEL_TOKEN` - Your Vercel API token
+   - `VERCEL_ORG_ID` - Your Vercel organization ID
+   - `VERCEL_PROJECT_ID` - Your Vercel project ID
+   - `RESEND_API_KEY` - Your Resend API key for contact form
+
+#### Workflow Features
+
+- **Automated Testing**: Linting, type checking, and build verification
+- **Preview Deployments**: Automatic preview deployments for pull requests
+- **Production Deployments**: Automatic deployments to production on main branch
+- **Environment Variables**: Secure handling of API keys and secrets
+
+#### Workflow Files
+
+- `.github/workflows/deploy.yml` - Main CI/CD pipeline
+- `.github/workflows/ci-cd.yml` - Alternative CI/CD setup
+- `.github/workflows/deploy-vercel.yml` - Vercel-specific deployment
+
+### Vercel (Manual)
 
 1. Push your code to GitHub
 2. Connect your repository to Vercel

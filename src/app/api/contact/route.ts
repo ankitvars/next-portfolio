@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
@@ -18,9 +16,12 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = contactFormSchema.parse(body)
 
+    // Initialize Resend with API key
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>", 
+      from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["varshneyankit011@gmail.com"],
       subject: `Portfolio Contact: ${validatedData.subject}`,
       html: `
