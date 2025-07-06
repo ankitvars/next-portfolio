@@ -335,62 +335,6 @@ export function ProjectsSection({ className }: ProjectsSectionProps) {
             </motion.div>
           </AnimatePresence>
 
-          {/* Project Carousel for Mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="lg:hidden mt-8"
-          >
-            <div className="embla" ref={emblaRef}>
-              <div className="embla__container">
-                {projects.map((project) => (
-                  <div key={project.title} className="embla__slide flex-[0_0_100%]">
-                    <div className="bg-card border border-border rounded-xl p-6 mx-2">
-                      <h3 className="text-xl font-bold text-foreground mb-3">
-                        {project.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-4">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-1 bg-muted text-xs text-muted-foreground rounded-md"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex space-x-2">
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-electric-blue text-background text-sm rounded-md"
-                        >
-                          <Eye className="w-4 h-4" />
-                          <span>Demo</span>
-                        </a>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 border border-electric-blue text-electric-blue text-sm rounded-md"
-                        >
-                          <Github className="w-4 h-4" />
-                          <span>Code</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
           {/* Projects Summary */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

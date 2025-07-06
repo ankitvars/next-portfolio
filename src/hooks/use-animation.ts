@@ -4,6 +4,9 @@ import { useInView } from "react-intersection-observer"
 import { useAnimation, easeOut } from "framer-motion"
 import { useEffect } from "react"
 
+// Re-export useInView for convenience
+export { useInView }
+
 export function useScrollAnimation(threshold = 0.1) {
   const controls = useAnimation()
   const [ref, inView] = useInView({

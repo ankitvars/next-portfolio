@@ -132,9 +132,9 @@ export function SkillsSection({ className }: SkillsSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="flex justify-center mb-12"
+            className="flex justify-center mb-6 md:mb-12"
           >
-            <div className="flex bg-muted rounded-lg p-1">
+            <div className="flex bg-muted rounded-lg p-1 overflow-x-auto gap-2 scrollbar-hide max-w-full">
               {categories.map((category, index) => {
                 const Icon = category.icon
                 const isActive = activeCategory === category.key
@@ -142,7 +142,7 @@ export function SkillsSection({ className }: SkillsSectionProps) {
                   <motion.button
                     key={category.key}
                     onClick={() => setActiveCategory(category.key as "frontend" | "backend" | "devops")}
-                    className={`relative flex items-center space-x-2 px-6 py-3 rounded-md font-medium transition-all duration-300 ${isActive
+                    className={`relative flex items-center space-x-2 px-3 py-2 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 ${isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                       }`}

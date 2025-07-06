@@ -4,44 +4,42 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Download, MapPin, Calendar, Briefcase } from "lucide-react"
 import { personalInfo, stats } from "@/constants"
-import { useFadeInAnimation, useStaggerAnimation } from "@/hooks/use-animation"
+import { useFadeInAnimation, useStaggerAnimation, useInView } from "@/hooks/use-animation"
 import { AboutSectionProps } from "@/types"
 
 export function AboutSection({ className }: AboutSectionProps) {
-  const [animatedStats, setAnimatedStats] = useState(stats.map(() => 0))
+  const [animatedStats, setAnimatedStats] = useState(() =>
+    stats.map(stat => {
+      const match = stat.value.match(/\d+(\.\d+)?/)
+      return match ? parseFloat(match[0]) : 0
+    })
+  )
   const [hasAnimated, setHasAnimated] = useState(false)
 
   const { ref: fadeRef, fadeInVariants } = useFadeInAnimation(0.3)
   const { ref: staggerRef, containerVariants, itemVariants } = useStaggerAnimation(stats, 0.2)
 
-  // Animate counters when section comes into view
+  // Use the proper useInView hook for the stats section
+  const [statsRef, statsInView] = useInView({
+    threshold: 0.1, // Lower threshold for better mobile detection
+    triggerOnce: true,
+    rootMargin: '0px 0px -50px 0px', // Trigger slightly earlier
+  })
+
+  // Animate counters when stats section comes into view
   useEffect(() => {
-    if (hasAnimated) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHasAnimated(true);
-            animateCounters();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const skillsElement = document.querySelector('#about');
-    if (skillsElement) {
-      observer.observe(skillsElement);
+    if (statsInView && !hasAnimated) {
+      setHasAnimated(true);
+      animateCounters();
     }
+  }, [statsInView, hasAnimated]);
 
-    return () => {
-      if (skillsElement) observer.unobserve(skillsElement);
-      observer.disconnect();
-    };
-  }, [hasAnimated]);
+
 
   const animateCounters = () => {
+    // Reset to 0 first for animation effect
+    setAnimatedStats(stats.map(() => 0))
+
     stats.forEach((stat, index) => {
       // Extract numeric part (including decimals)
       const match = stat.value.match(/\d+(\.\d+)?/)
@@ -199,11 +197,10 @@ export function AboutSection({ className }: AboutSectionProps) {
 
             {/* Right Column - Stats */}
             <motion.div
-              ref={staggerRef}
+              ref={statsRef}
               variants={containerVariants}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate={statsInView ? "visible" : "hidden"}
               className="grid grid-cols-2 gap-6"
             >
               {stats.map((stat, index) => (
@@ -215,7 +212,7 @@ export function AboutSection({ className }: AboutSectionProps) {
                   <motion.div
                     className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-electric-blue to-neon-accent bg-clip-text text-transparent mb-2"
                     initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
+                    animate={statsInView ? { scale: 1 } : { scale: 0 }}
                     transition={{ delay: 0.5 + index * 0.1, type: "spring" }}
                   >
                     {animatedStats[index]}{stat.value.replace(/^[\d\.]+/, "")}
