@@ -83,7 +83,7 @@ export function Header({ className }: HeaderProps) {
         }}
       />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-8 relative">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <motion.div
@@ -106,7 +106,7 @@ export function Header({ className }: HeaderProps) {
             </motion.div>
             <div className="hidden sm:block">
               <motion.h1
-                className="text-lg lg:text-xl font-bold text-foreground"
+                className="text-sm sm:text-lg lg:text-xl font-bold text-foreground"
                 whileHover={{ color: "var(--electric-blue)" }}
                 transition={{ duration: 0.3 }}
               >
@@ -189,11 +189,11 @@ export function Header({ className }: HeaderProps) {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-4">
+          <div className="lg:hidden flex items-center space-x-2 sm:space-x-4">
             <ThemeToggle />
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg bg-muted/50 hover:bg-accent transition-all duration-300 border border-border/50"
+              className="p-1.5 sm:p-2 rounded-lg bg-muted/50 hover:bg-accent transition-all duration-300 border border-border/50"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle mobile menu"
@@ -207,7 +207,7 @@ export function Header({ className }: HeaderProps) {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -217,7 +217,7 @@ export function Header({ className }: HeaderProps) {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="w-6 h-6" />
+                    <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -235,7 +235,7 @@ export function Header({ className }: HeaderProps) {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <div className="py-4 space-y-4 border-t border-border/50 bg-background/95 backdrop-blur-sm">
+              <div className="py-3 sm:py-4 space-y-3 sm:space-y-4 border-t border-border/50 bg-background/95 backdrop-blur-sm">
                 {/* Mobile Navigation */}
                 <nav className="space-y-2">
                   {navigation.map((item, index) => {
@@ -245,7 +245,7 @@ export function Header({ className }: HeaderProps) {
                         key={item.name}
                         onClick={() => handleNavClick(item.href)}
                         className={cn(
-                          "block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 font-medium relative overflow-hidden",
+                          "block w-full text-left px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition-all duration-300 font-medium relative overflow-hidden text-sm sm:text-base",
                           isActive
                             ? "bg-gradient-to-r from-electric-blue/20 to-neon-accent/20 text-electric-blue border border-electric-blue/30"
                             : "hover:bg-accent"
@@ -271,13 +271,13 @@ export function Header({ className }: HeaderProps) {
                 </nav>
 
                 {/* Mobile Social Links */}
-                <div className="flex items-center justify-center space-x-3 px-4">
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3 px-3 sm:px-4">
                   {socialLinks.map((link, index) => (
                     <motion.a
                       key={link.name}
                       href={link.url}
                       {...(link.url.startsWith('mailto:') ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-                      className="p-3 rounded-lg bg-muted/50 hover:bg-accent transition-all duration-300 border border-border/50"
+                      className="p-2 sm:p-3 rounded-lg bg-muted/50 hover:bg-accent transition-all duration-300 border border-border/50"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, scale: 0 }}
