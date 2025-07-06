@@ -17,7 +17,7 @@ export function AboutSection({ className }: AboutSectionProps) {
   const [hasAnimated, setHasAnimated] = useState(false)
 
   const { ref: fadeRef, fadeInVariants } = useFadeInAnimation(0.3)
-  const { ref: staggerRef, containerVariants, itemVariants } = useStaggerAnimation(stats, 0.2)
+  const { containerVariants, itemVariants } = useStaggerAnimation(stats, 0.2)
 
   // Use the proper useInView hook for the stats section
   const [statsRef, statsInView] = useInView({

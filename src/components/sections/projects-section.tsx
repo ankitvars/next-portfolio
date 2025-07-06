@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ExternalLink, Github, Eye, Code, ArrowRight, CheckCircle } from "lucide-react"
-import useEmblaCarousel from "embla-carousel-react"
 import { projects } from "@/constants"
 import { useFadeInAnimation, useStaggerAnimation } from "@/hooks/use-animation"
 import { ProjectsSectionProps } from "@/types"
@@ -12,7 +11,6 @@ import Image from 'next/image'
 export function ProjectsSection({ className }: ProjectsSectionProps) {
   const [selectedProject, setSelectedProject] = useState(0)
   const [imageLoading, setImageLoading] = useState<Record<string, boolean>>({})
-  const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" })
 
   const { ref: fadeRef, fadeInVariants } = useFadeInAnimation(0.3)
   const { ref: staggerRef, containerVariants, itemVariants } = useStaggerAnimation(projects, 0.2)
