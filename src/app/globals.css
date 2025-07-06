@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
 :root {
+  /* Light Theme Colors */
   --background: #ffffff;
   --foreground: #171717;
+  --card: #f8f9fa;
+  --card-foreground: #171717;
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+  --primary: #007bff;
+  --primary-foreground: #ffffff;
+  --secondary: #6c757d;
+  --secondary-foreground: #ffffff;
+  --muted: #f8f9fa;
+  --muted-foreground: #6c757d;
+  --accent: #e9ecef;
+  --accent-foreground: #171717;
+  --destructive: #dc3545;
+  --destructive-foreground: #ffffff;
+  --border: #dee2e6;
+  --input: #ffffff;
+  --ring: #007bff;
+  --radius: 0.5rem;
+
+  /* Custom Portfolio Colors - Light */
+  --electric-blue: #007bff;
+  --electric-blue-light: #3391ff;
+  --neon-accent: #28a745;
+  --neon-orange: #fd7e14;
+  --soft-gray: #6c757d;
+  --light-gray: #f8f9fa;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom Portfolio Colors */
+  --color-electric-blue: var(--electric-blue);
+  --color-electric-blue-light: var(--electric-blue-light);
+  --color-neon-accent: var(--neon-accent);
+  --color-neon-orange: var(--neon-orange);
+  --color-soft-gray: var(--soft-gray);
+  --color-light-gray: var(--light-gray);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --radius: var(--radius);
 }
 
+/* Dark Theme Colors */
+[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #ededed;
+  --card: #0a0a0a;
+  --card-foreground: #ededed;
+  --popover: #000000;
+  --popover-foreground: #ededed;
+  --primary: #00d4ff;
+  --primary-foreground: #000000;
+  --secondary: #0099cc;
+  --secondary-foreground: #ffffff;
+  --muted: #0a0a0a;
+  --muted-foreground: #a1a1aa;
+  --accent: #1a1a1a;
+  --accent-foreground: #ededed;
+  --destructive: #ff4444;
+  --destructive-foreground: #ffffff;
+  --border: #1a1a1a;
+  --input: #0a0a0a;
+  --ring: #00d4ff;
+
+  /* Custom Portfolio Colors - Dark */
+  --electric-blue: #00d4ff;
+  --electric-blue-light: #33ddff;
+  --neon-accent: #39ff14;
+  --neon-orange: #ff6b35;
+  --soft-gray: #a1a1aa;
+  --light-gray: #0a0a0a;
+}
+
+/* System preference fallback */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
+  :root:not([data-theme]) {
+    --background: #000000;
     --foreground: #ededed;
+    --card: #0a0a0a;
+    --card-foreground: #ededed;
+    --popover: #000000;
+    --popover-foreground: #ededed;
+    --primary: #00d4ff;
+    --primary-foreground: #000000;
+    --secondary: #0099cc;
+    --secondary-foreground: #ffffff;
+    --muted: #0a0a0a;
+    --muted-foreground: #a1a1aa;
+    --accent: #1a1a1a;
+    --accent-foreground: #ededed;
+    --destructive: #ff4444;
+    --destructive-foreground: #ffffff;
+    --border: #1a1a1a;
+    --input: #0a0a0a;
+    --ring: #00d4ff;
+
+    /* Custom Portfolio Colors - Dark */
+    --electric-blue: #00d4ff;
+    --electric-blue-light: #33ddff;
+    --neon-accent: #39ff14;
+    --neon-orange: #ff6b35;
+    --soft-gray: #a1a1aa;
+    --light-gray: #0a0a0a;
   }
+}
+
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-blue-light);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
