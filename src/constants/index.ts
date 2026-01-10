@@ -21,11 +21,11 @@ export const personalInfo = {
   name: "Ankit Varshney",
   role: "Senior Frontend Developer",
   location: "Gurugram, India",
-  experience: "3+ years",
+  experience: "4+ years",
   currentRole:
     "Senior React.js Developer at Cognizant Technology Solutions (via Shephertz)",
   summary:
-    "Passionate Senior Frontend Developer with 3+ years of experience in React.js, Next.js, and modern frontend stacks. Specialized in building scalable web applications for health tech and fintech domains. Currently working at Niva Bupa (Cognizant Technology Solutions), delivering high-quality solutions with a focus on performance and user experience. Previously contributed to fintech innovation at Ruptok.",
+    "Passionate Senior Frontend Developer with 4+ years of experience in React.js, Next.js, and modern frontend stacks. Specialized in building scalable web applications for health tech and fintech domains. Currently working at Niva Bupa (Cognizant Technology Solutions), delivering high-quality solutions with a focus on performance and user experience. Previously contributed to fintech innovation at Ruptok.",
   specializations: [
     "Health Tech Solutions",
     "Fintech Platforms",
@@ -71,11 +71,11 @@ export const skills = {
 
 export const experience = [
   {
-    company: "Cognizant Technology Solutions",
+    company: "Nivabupa Health Insurance",
     position: "Senior React.js Developer",
     duration: "December 2024 – Present",
     location: "Gurugram, India",
-    logo: "/companies/cognizant_logo.jpeg",
+    logo: "/companies/nivabupa_logo.jpeg",
     description:
       "Working as a Senior React.js Developer through Shephertz, delivering high-quality solutions for enterprise clients.",
     achievements: [
