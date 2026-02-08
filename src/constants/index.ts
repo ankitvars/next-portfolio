@@ -1,33 +1,33 @@
 export const siteConfig = {
   name: "Ankit Varshney",
-  title: "Senior Frontend Developer",
+  title: "Senior Frontend Engineer",
   description:
-    "Senior React.js Developer and Frontend Specialist with 3+ years of experience. Specializing in React.js, Next.js, and modern web technologies.",
+    "Senior Frontend Engineer and Frontend Specialist with 4+ years of experience. Specializing in React.js, Next.js, and modern web technologies.",
   url: "https://ankits-portfolio.vercel.app",
   ogImage: "https://ankits-portfolio.vercel.app/og-image.jpg",
   links: {
     github: "https://github.com/ankitvars",
     linkedin: "https://linkedin.com/in/ankitvars",
-    email: "mailto:varshneyankit011@gmail.com",
+    email: "mailto:ankitvars.dev@gmail.com",
   },
   contact: {
-    email: "varshneyankit011@gmail.com",
+    email: "ankitvars.dev@gmail.com",
     phone: "+91-8433459166",
-    location: "Gurugram, India",
+    location: "Noida, Uttar Pradesh, India",
   },
 };
 
 export const personalInfo = {
   name: "Ankit Varshney",
-  role: "Senior Frontend Developer",
-  location: "Gurugram, India",
+  role: "Senior Frontend Engineer",
+  location: "Noida, Uttar Pradesh, India",
   experience: "4+ years",
   currentRole:
-    "Senior React.js Developer at Cognizant Technology Solutions (via Shephertz)",
+    "Senior Frontend Engineer at Niva Bupa Health Insurance",
   summary:
-    "Passionate Senior Frontend Developer with 4+ years of experience in React.js, Next.js, and modern frontend stacks. Specialized in building scalable web applications for health tech and fintech domains. Currently working at Niva Bupa (Cognizant Technology Solutions), delivering high-quality solutions with a focus on performance and user experience. Previously contributed to fintech innovation at Ruptok.",
+    "Passionate Senior Frontend Engineer with 4+ years of experience in React.js, Next.js, and modern frontend stacks. Specialized in building scalable web applications for Health Insurance and fintech domains. Currently working at Niva Bupa (Cognizant Technology Solutions), delivering high-quality solutions with a focus on performance and user experience. Previously contributed to fintech innovation at Ruptok.",
   specializations: [
-    "Health Tech Solutions",
+    "Health Insurance Solutions",
     "Fintech Platforms",
     "Progressive Web Apps (PWA)",
     "API Development",
@@ -72,12 +72,12 @@ export const skills = {
 export const experience = [
   {
     company: "Nivabupa Health Insurance",
-    position: "Senior React.js Developer",
+    position: "Senior Frontend Engineer",
     duration: "December 2024 – Present",
-    location: "Gurugram, India",
+    location: "Noida, Uttar Pradesh, India",
     logo: "/companies/nivabupa_logo.jpeg",
     description:
-      "Working as a Senior React.js Developer through Shephertz, delivering high-quality solutions for enterprise clients.",
+      "Working as a Senior Frontend Engineer through Shephertz, delivering high-quality solutions for enterprise clients.",
     achievements: [
       "Led AEM to Next.js migration project, improving performance by 40%",
       "Implemented VAPT security fixes, achieving 100% compliance",
@@ -266,15 +266,16 @@ export const socialLinks = [
   },
   {
     name: "Email",
-    url: "mailto:varshneyankit011@gmail.com",
+    url: "mailto:ankitvars.dev@gmail.com",
     icon: "mail",
   },
 ];
 
 export const stats = [
-  { label: "Years of Experience", value: "3.5+" },
+  { label: "Years of Experience", value: "4++" },
   { label: "Projects Completed (GitHub)", value: "40+" },
   { label: "Industrial Projects", value: "10+" },
   { label: "Technologies Mastered", value: "20+" },
-  { label: "Production Deployments", value: "10+" },
+  { label: "Production Deployments", value: "20+" },
+  { label: "Avg Lighthouse Score", value: "90+" }
 ];

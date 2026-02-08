@@ -227,63 +227,6 @@ export function Footer() {
               </ul>
             </motion.div>
 
-            {/* Services */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <motion.h4
-                className="text-lg font-semibold text-foreground mb-6 flex items-center space-x-2"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <Sparkles className="w-5 h-5 text-neon-accent" />
-                <span>Services</span>
-              </motion.h4>
-              <ul className="space-y-3">
-                {[
-                  "Web Development",
-                  "Mobile Apps",
-                  "UI/UX Design",
-                  "API Development",
-                  "Performance Optimization",
-                  "Technical Consulting",
-                ].map((service, index) => (
-                  <motion.li
-                    key={service}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    <motion.div
-                      className="flex items-center space-x-2 text-muted-foreground text-sm group cursor-pointer"
-                      whileHover={{ color: "var(--electric-blue)" }}
-                    >
-                      <motion.div
-                        className="w-1.5 h-1.5 bg-neon-accent rounded-full"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.5, 1, 0.5]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: index * 0.2
-                        }}
-                      />
-                      <span>{service}</span>
-                    </motion.div>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}

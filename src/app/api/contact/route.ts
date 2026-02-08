@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["varshneyankit011@gmail.com"],
+      to: ["ankitvars.dev@gmail.com"],
       subject: `Portfolio Contact: ${validatedData.subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">

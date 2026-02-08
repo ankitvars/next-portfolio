@@ -117,7 +117,7 @@ export function Header({ className }: HeaderProps) {
                 whileHover={{ color: "var(--neon-accent)" }}
                 transition={{ duration: 0.3 }}
               >
-                Senior Frontend Developer
+                Senior Frontend Engineer
               </motion.p>
             </div>
           </motion.div>
